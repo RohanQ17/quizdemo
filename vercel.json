@@ -1,9 +1,17 @@
 {
   "builds": [
-    { "src": "manage.py", "use": "@vercel/python" }
+    {
+      "src": "DjangoProject/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb" }
+    }
   ],
   "routes": [
     { "src": "/static/(.*)", "dest": "/static/$1" },
-    { "src": "/(.*)", "dest": "manage.py" }
+    {
+      "src": "/(.*)",
+      "dest": "DjangoProject/wsgi.py"
+    }
   ]
 }
+
