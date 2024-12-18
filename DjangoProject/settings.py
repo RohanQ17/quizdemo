@@ -107,10 +107,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # Session engine (default uses database)
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
-# Session cookie settings
-SESSION_COOKIE_SECURE = True  # Only for HTTPS in production
-SESSION_COOKIE_HTTPONLY = True
-SESSION_COOKIE_SAMESITE = 'Lax'
 
 
 # Internationalization
