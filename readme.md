@@ -33,20 +33,25 @@ venv\Scripts\activate
 python3 -m venv venv
 source venv/bin/activate
 
+```
+```bash
 ### 2. Install Dependencies
 pip install -r requirements.txt
-
+```
+```bash
 ### 3. Configure Database
 # Apply migrations
 python manage.py makemigrations
 python manage.py migrate
-
+```
+```bash
 ### 4. Load questions 
 # Method 1: Using management command
 python manage.py load_questions
-
+```
+```bash
 ### 5. Run the server
 Python manage.py runserver
-
+```
 
 
