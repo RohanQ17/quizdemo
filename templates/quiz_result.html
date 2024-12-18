@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .result-container {
+            background-color: white;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 104, 255, 0.1);
+            padding: 30px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .score-summary {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .score-summary h1 {
+            color: #0068FF;
+            margin-bottom: 15px;
+        }
+
+        .score-summary p {
+            font-size: 18px;
+            color: #2c3e50;
+        }
+
+        .detailed-results {
+            margin-top: 20px;
+        }
+
+        .result-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+        }
+
+        .result-item.correct::before {
+            background-color: #28a745;
+        }
+
+        .result-item.incorrect::before {
+            background-color: #dc3545;
+        }
+
+        .result-item p {
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .result-item p:first-child {
+            font-weight: 600;
+            color: #0068FF;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #0068FF;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 104, 255, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #0056d6;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <div class="score-summary">
+            <h1>Quiz Results</h1>
+            <p>You scored {{ correct_answers }} out of {{ total_questions }}</p>
+            <p>Percentage: {{ score_percentage|floatformat:2 }}%</p>
+        </div>
+
+        <div class="detailed-results">
+            <h2>Detailed Breakdown</h2>
+            {% for result in results %}
+                <div class="result-item {% if result.is_correct %}correct{% else %}incorrect{% endif %}">
+                    <p>{{ result.question_text }}</p>
+                    <p>Your answer: {{ result.selected_answer }}</p>
+                    <p>Correct answer: {{ result.correct_answer }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <a href="{% url 'start_quiz' %}" class="btn">Take Quiz Again</a>
+    </div>
+</body>
+</html>
