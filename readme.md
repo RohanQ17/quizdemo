@@ -1,5 +1,7 @@
 # Django Quiz App
-
+![Screenshot (201).png](Screenshot%20(201).png)
+![img.png](img.png)
+![img_1.png](img_1.png)
 ## Overview
 This is a simple Django-based quiz application that allows users to take a randomized 5-question quiz. The app selects questions randomly from a database, presents them one by one, and provides a detailed results page showing the user's performance.
 
